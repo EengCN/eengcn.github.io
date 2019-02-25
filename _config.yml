@@ -41,7 +41,7 @@ relative_link: false
 future: true
 highlight:
   enable: true
-  line_number: true
+  line_number: false
   auto_detect: false
   tab_replace:
   
@@ -82,4 +82,16 @@ deploy:
   type: git
   repository: git@github.com:EengCN/eengcn.github.io.git
   branch: master
+
+  # 豆瓣个人主页小插件
+douban:
+  user: 120509540
+  builtin: true
+  book:
+    title: '我的阅读'
+    quote: '少扯淡，多阅读'
+  movie:
+    title: '我看的电影'
+    quote: '不错的电影'
+  timeout: 10000 
 
