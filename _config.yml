@@ -90,8 +90,6 @@ douban:
   book:
     title: '我的阅读'
     quote: '少扯淡，多阅读'
-  movie:
-    title: '我看的电影'
-    quote: '不错的电影'
+  
   timeout: 10000 
 

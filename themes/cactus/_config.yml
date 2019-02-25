@@ -17,9 +17,8 @@ nav:
   home: /
   about: /about/
   articles: /archives/
-  projects: 'https:github.com'
+  #projects: 'https//:github.com'
   Books: /books     #This is your books page
-  Movies: /movies   #This is your movies page
 
 
 # Links to your social media accounts.
