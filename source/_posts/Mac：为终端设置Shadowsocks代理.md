@@ -1,8 +1,11 @@
 ---
 title: Mac：为终端设置Shadowsocks代理
 date: 2019-02-18 20:57:39
-tags: Shadowsocks
-categories: 网络代理
+tags:  
+- 网络代理
+- Shadowsocks
+categories: 
+- 技术
 copyright: true
 ---
 Shadowsocks使用socks5协议，而终端很多工具目前只支持http和https等协议，所以我们为终端设置Shadowsocks的思路就是将socks5协议转换成http协议，然后为终端设置即可。
