@@ -9,6 +9,11 @@
   <% } %>
     <div id="title">
       <h1><%= config.title %></h1>
+      <% if (theme.subtitle){ %>
+        <h3 id="subtitle">
+          <a href="<%- url_for() %>"><%= theme.subtitle %></a>
+        </h3>
+      <% } %>
     </div>
   </a>
   <div id="nav">

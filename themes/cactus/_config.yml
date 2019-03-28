@@ -15,10 +15,10 @@ direction: ltr
 # languages/*.yml
 nav:
   home: /
-  about: /about/
   articles: /archives/
   #projects: 'https//:github.com'
   Books: /books     #This is your books page
+  about: /about/
 
 
 # Links to your social media accounts.
@@ -26,9 +26,9 @@ nav:
 # (see https://fontawesome.com/icons?d=gallery&s=brands);
 # only 'mail' is an exception.
 social_links:
-  github: https://github.com/EengCN
-  twitter: https://twitter.com/Eeng_CN
-  instagram: https://www.instagram.com/eeng0823/
+  github: https://github.com/IanCN
+  twitter: https://twitter.com/Ian_Cnboy
+  instagram: https://www.instagram.com/ian_cnboy/
   weibo: https://weibo.com/java11/profile
 
 # Customize the overview with displaying a tagcloud on the index page.
@@ -106,7 +106,7 @@ highlight: github
 # Set the color scheme.
 # Available color schemes are 'dark', 'light', 'classic' and 'white'.
 # Alternatively, add your own custom color scheme to source/css/_colors.
-colorscheme: white
+colorscheme: classic
  
 
 # Maximal width of the page in rem units.
@@ -139,11 +139,11 @@ disqus:
 
 gitalk:
   enable: true
-  owner:  EengCN 
-  repo: eengcn.github.io
+  owner:  IanCN 
+  repo: iancn.github.io
   clientId:  5806b2f4049297f48ab0
   clientSecret:  b3812ba63448025db4ffde278f7fe4d00ce3a1cb
-  admin:  ['EengCN'] # GitHub repo owner and collaborators, only these guys can initialize github issues
+  admin:  ['IanCN'] # GitHub repo owner and collaborators, only these guys can initialize github issues
   distractionFreeMode: true
 
 
