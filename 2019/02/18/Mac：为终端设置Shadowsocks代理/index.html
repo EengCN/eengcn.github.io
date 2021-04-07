@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Shadowsocks使用socks5协议，而终端很多工具目前只支持http和https等协议，所以我们为终端设置Shadowsocks的思路就是将socks5协议转换成http协议，然后为终端设置即可。使用 HomeBrew 安装 polipo,$ brew install polipo 修改polipo配置1.设置每次打开电脑自动启动polipo$ ln -sfv /usr/local/opt">
+<meta name="keywords" content="网络代理,Shadowsocks">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac：为终端设置Shadowsocks代理">
+<meta property="og:url" content="https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/index.html">
+<meta property="og:site_name" content="Cnboy‘s blog">
+<meta property="og:description" content="Shadowsocks使用socks5协议，而终端很多工具目前只支持http和https等协议，所以我们为终端设置Shadowsocks的思路就是将socks5协议转换成http协议，然后为终端设置即可。使用 HomeBrew 安装 polipo,$ brew install polipo 修改polipo配置1.设置每次打开电脑自动启动polipo$ ln -sfv /usr/local/opt">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/138050-f0a83e2b25e0866e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-03-28T10:27:17.893Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac：为终端设置Shadowsocks代理">
+<meta name="twitter:description" content="Shadowsocks使用socks5协议，而终端很多工具目前只支持http和https等协议，所以我们为终端设置Shadowsocks的思路就是将socks5协议转换成http协议，然后为终端设置即可。使用 HomeBrew 安装 polipo,$ brew install polipo 修改polipo配置1.设置每次打开电脑自动启动polipo$ ln -sfv /usr/local/opt">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/138050-f0a83e2b25e0866e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Mac：为终端设置Shadowsocks代理</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/books">Books</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/02/25/git-pull，报错：refusing-to-merge-unrelated-histories/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/02/18/使用Hexo搭建博客/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/&text=Mac：为终端设置Shadowsocks代理"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/&title=Mac：为终端设置Shadowsocks代理"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/&is_video=false&description=Mac：为终端设置Shadowsocks代理"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Mac：为终端设置Shadowsocks代理&body=Check out this article: https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/&title=Mac：为终端设置Shadowsocks代理"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/&title=Mac：为终端设置Shadowsocks代理"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/&title=Mac：为终端设置Shadowsocks代理"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/&title=Mac：为终端设置Shadowsocks代理"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/&name=Mac：为终端设置Shadowsocks代理&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#修改polipo配置"><span class="toc-number">1.</span> <span class="toc-text">修改polipo配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置-bash-profile文件"><span class="toc-number">2.</span> <span class="toc-text">配置.bash_profile文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证"><span class="toc-number">3.</span> <span class="toc-text">验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置git代理"><span class="toc-number">4.</span> <span class="toc-text">设置git代理</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <script src="https://cdn.bootcss.com/pace/1.0.1/pace.js">
+</script><link href="https://cdn.bootcss.com/pace/1.0.1/themes/black/pace-theme-flash.min.css" rel="stylesheet">
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Mac：为终端设置Shadowsocks代理
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Cnboy‘s blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-02-18T12:57:39.000Z" itemprop="datePublished">2019-02-18</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/技术/">技术</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Shadowsocks/">Shadowsocks</a>, <a class="tag-link" href="/tags/网络代理/">网络代理</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Shadowsocks使用socks5协议，而终端很多工具目前只支持http和https等协议，所以我们为终端设置Shadowsocks的思路就是将socks5协议转换成http协议，然后为终端设置即可。<br>使用 <a href="https://brew.sh/" target="_blank" rel="noopener">HomeBrew</a> 安装 <a href="http://www.pps.univ-paris-diderot.fr/~jch/software/polipo/" target="_blank" rel="noopener">polipo</a>,<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ brew install polipo</span><br></pre></td></tr></table></figure></p>
+<h2 id="修改polipo配置"><a href="#修改polipo配置" class="headerlink" title="修改polipo配置"></a>修改<code>polipo</code>配置</h2><p>1.设置每次打开电脑自动启动<code>polipo</code><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ ln -sfv /usr/local/opt/polipo/*.plist ~/Library/LaunchAgents</span><br></pre></td></tr></table></figure></p>
+<p>2.修改文件<code>/usr/local/opt/polipo/homebrew.mxcl.polipo.plist</code>设置<code>parentProxy</code><br>  先查看Shadowsocks的偏好设置，然后点击HTTP<br><img src="https://upload-images.jianshu.io/upload_images/138050-f0a83e2b25e0866e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Pasted Graphic 1.png"><br>添加<code>&lt;string&gt;socksParentProxy=localhost:1087&lt;/string&gt;</code><br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>Label<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span>&gt;</span>homebrew.mxcl.polipo<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>RunAtLoad<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>KeepAlive<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>ProgramArguments<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>/usr/local/opt/polipo/bin/polipo<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 添加如下一行 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">string</span>&gt;</span>socksParentProxy=localhost:1087<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Set `ulimit -n 20480`. The default OS X limit is 256, that's</span></span><br><span class="line"><span class="comment">         not enough for Polipo (displays 'too many files open' errors).</span></span><br><span class="line"><span class="comment">         It seems like you have no reason to lower this limit</span></span><br><span class="line"><span class="comment">         (and unlikely will want to raise it). --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>SoftResourceLimits<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">key</span>&gt;</span>NumberOfFiles<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">integer</span>&gt;</span>20480<span class="tag">&lt;/<span class="name">integer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="配置-bash-profile文件"><a href="#配置-bash-profile文件" class="headerlink" title="配置.bash_profile文件"></a>配置<code>.bash_profile</code>文件</h2><p><strong>为了让如下配置在全局有效，需将如下配置添加到.bash_profile文件。</strong><br>打开<code>~/.bash_profile</code>文件(如果不存在此文件，使用<code>touch .bash_profile</code>命令创建)<br>添加如下两行配置<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 开启代理</span><br><span class="line">alias hp=&quot;export http_proxy=&apos;http://localhost:1087&apos;;export https_proxy=&apos;http://localhost:1087&apos;&quot;</span><br><span class="line"># 关闭代理</span><br><span class="line">alias hpOff=&quot;unset http_proxy; unset https_proxy&quot;</span><br><span class="line"></span><br><span class="line"># 以上hp,hpOff命名可根据个人习惯命名  hp代表http proxy简称...</span><br></pre></td></tr></table></figure></p>
+<p>然后使用<code>$source ~/.bash_profile</code>使上面两行配置起效。</p>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>如想让终端走<code>Showdowsocks</code>代理，执行<code>$ hp</code>指令<br>如不想让终端走<code>Showdowsocks</code>代理，执行<code>$ hpOff</code>指令<br>验证以上指令是否有效,可在终端执行<code>$ curl ip.gs</code>查看ip信息<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ curl ip.gs   // 查看ip信息</span><br><span class="line">Current IP / 当前 IP: 111.206.170.9</span><br><span class="line">ISP / 运营商:  ChinaUnicom</span><br><span class="line">City / 城市: Beijing Beijing</span><br><span class="line">Country / 国家: China</span><br><span class="line">IP.GS is now IP.SB, please visit https://ip.sb/ for more information. / IP.GS 已更改为 IP.SB ，请访问 https://ip.sb/ 获取更详细 IP 信息！</span><br><span class="line">Please join Telegram group https://t.me/sbfans if you have any issues. / 如有问题，请加入 Telegram 群 https://t.me/sbfans </span><br><span class="line">  /\_/\</span><br><span class="line">=( °w° )=</span><br><span class="line">  )   (  //</span><br><span class="line"> (__ __)//</span><br><span class="line"></span><br><span class="line">$ hp</span><br><span class="line">$ curl ip.gs  </span><br><span class="line">Current IP / 当前 IP: 104.245.13.64</span><br><span class="line">ISP / 运营商:  xtom.com</span><br><span class="line">City / 城市: Los Angeles California</span><br><span class="line">Country / 国家: United States</span><br><span class="line">IP.GS is now IP.SB, please visit https://ip.sb/ for more information. / IP.GS 已更改为 IP.SB ，请访问 https://ip.sb/ 获取更详细 IP 信息！</span><br><span class="line">Please join Telegram group https://t.me/sbfans if you have any issues. / 如有问题，请加入 Telegram 群 https://t.me/sbfans </span><br><span class="line"></span><br><span class="line">  /\_/\</span><br><span class="line">=( °w° )=</span><br><span class="line">  )   (  //</span><br><span class="line"> (__ __)//</span><br></pre></td></tr></table></figure></p>
+<h2 id="设置git代理"><a href="#设置git代理" class="headerlink" title="设置git代理"></a>设置git代理</h2><p>操作git是在后面添加配置 <code>--config http.proxy=localhost:1087</code>，例如：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/usename/projectName.git --config http.proxy=localhost:1087</span><br></pre></td></tr></table></figure></p>
+<p>可把以上指令添加到<code>.bash_profile</code>文件,这样就避免每次输入这么长的配置了。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gp=&quot; --config http.proxy=localhost:8123&quot;</span><br></pre></td></tr></table></figure></p>
+<p>简化后：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/usename/projectName.git $gp</span><br></pre></td></tr></table></figure></p>
+
+  </div>
+</article>
+<br>
+
+  <div class="my_post_copyright">
+    <!-- <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+
+    <!-- JS库 sweetalert 可修改路径 -->
+   <!--  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+    <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css"> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.css">
+
+    <p><span>本文标题: </span><a href="{{ url_for<=%page.path }}">Mac：为终端设置Shadowsocks代理</a></p>
+    <p><span>文章作者: </span><a href="/" title="访问  的个人博客">Cnboy</a></p>
+    <p><span>发布时间: </span>2019年02月18日 - 20:02</p>
+    <p><span>最后更新: </span>2019年03月28日 - 18:03</p>
+    <p><span>原始链接: </span><a href="/2019/02/18/Mac：为终端设置Shadowsocks代理/" title="Mac：为终端设置Shadowsocks代理">https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/</a>
+      <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/" aria-label="复制成功！"></i></span>
+    </p>
+    <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+  </div>
+  <script> 
+      var clipboard = new ClipboardJS('.fa-clipboard');
+      clipboard.on('success', function(e) {
+          Swal.fire({   
+              title: "",   
+              titleText: '复制成功',   
+              html: false,
+              type: 'success',
+              timer: 500,   
+              showConfirmButton: false
+            });
+      }); 
+  </script>
+
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+   <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+   <script src="https://blog.cnboy.site/js/md5.min.js"></script>
+   	
+	<div class="blog-post-comments">
+		<div id="gitalk-container">
+			
+		</div>
+    
+
+    </div>
+    <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '5806b2f4049297f48ab0',
+          clientSecret: 'b3812ba63448025db4ffde278f7fe4d00ce3a1cb',
+          repo: 'iancn.github.io',
+          owner: 'IanCN',
+          admin: ['IanCN'],
+          id: md5(location.pathname),
+          distractionFreeMode: true
+        });
+        gitalk.render('gitalk-container') ;          
+    </script>
+
+
+
+	
+
+
+
+<!--<style>
+    .pace .pace-progress {
+        background: rgb(93,185,41); /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>-->
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/books">Books</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#修改polipo配置"><span class="toc-number">1.</span> <span class="toc-text">修改polipo配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置-bash-profile文件"><span class="toc-number">2.</span> <span class="toc-text">配置.bash_profile文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证"><span class="toc-number">3.</span> <span class="toc-text">验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置git代理"><span class="toc-number">4.</span> <span class="toc-text">设置git代理</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/&text=Mac：为终端设置Shadowsocks代理"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/&title=Mac：为终端设置Shadowsocks代理"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/&is_video=false&description=Mac：为终端设置Shadowsocks代理"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Mac：为终端设置Shadowsocks代理&body=Check out this article: https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/&title=Mac：为终端设置Shadowsocks代理"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/&title=Mac：为终端设置Shadowsocks代理"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/&title=Mac：为终端设置Shadowsocks代理"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/&title=Mac：为终端设置Shadowsocks代理"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://blog.cnboy.site/2019/02/18/Mac：为终端设置Shadowsocks代理/&name=Mac：为终端设置Shadowsocks代理&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Cnboy
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/books">Books</a></li>
+         
+          <li><a href="/about/">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
